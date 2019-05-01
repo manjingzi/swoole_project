@@ -71,15 +71,15 @@ composer require easyswoole/easyswoole=3.x-dev
 php vendor/bin/easyswoole install
 
 
-## 以下命令在window cmd 有效 MINGW64 无效 
-
-docker exec -it swoole_php72_1 /bin/bash
-
-docker exec -it swoole_php72_1 php /var/www/html/easyswoole start
 
 #######################################################
 ## 本地未安装相关软件可以在服务端 创建新项目例子
-docker exec -it swoole_php72_1 cd /var/www/html
+
+## docker exec命令在window cmd 有效 MINGW64 无效 
+
+docker exec -it swoole_php72_1 /bin/bash
+
+cd /var/www/html
 
 git clone https://github.com/easy-swoole/easyswoole.git
 
@@ -88,6 +88,8 @@ cd easyswoole
 composer require easyswoole/easyswoole=3.x-dev
 
 php vendor/bin/easyswoole install
+
+php /var/www/html/easyswoole start
 
 ## 配置数据库
 
