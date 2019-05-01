@@ -57,10 +57,37 @@ docker-compose up -d
 
 docker-compose up -d --build
 
+#######################################################
+## 本地安装了git php  php composer 创建新项目例子
 cd ../www
 
 ## 获取源代码
 git clone https://github.com/easy-swoole/easyswoole.git
+
+cd easyswoole
+
+composer require easyswoole/easyswoole=3.x-dev
+
+php vendor/bin/easyswoole install
+
+
+## 以下命令在window cmd 有效 MINGW64 无效 
+
+docker exec -it swoole_php72_1 /bin/bash
+
+docker exec -it swoole_php72_1 php /var/www/html/easyswoole start
+
+#######################################################
+## 本地未安装相关软件可以在服务端 创建新项目例子
+docker exec -it swoole_php72_1 cd /var/www/html
+
+git clone https://github.com/easy-swoole/easyswoole.git
+
+cd easyswoole
+
+composer require easyswoole/easyswoole=3.x-dev
+
+php vendor/bin/easyswoole install
 
 ## 配置数据库
 
@@ -102,9 +129,9 @@ docker exec swoole_nginx_1 nginx -s reload
 
 ## 启动镜像
 docker start swoole_redis_1 swoole_mysql_1 swoole_php72_1 swoole_nginx_1
+
 ## 启动镜像
 docker-compose start
-
 
 在容器 swoole_php72_1 中开启一个交互模式的终端:  MINGW64 无效
 docker exec -it  swoole_php72_1 /bin/bash
