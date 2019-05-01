@@ -23,7 +23,8 @@ mv composer.phar /usr/local/bin/composer
 ## php swoole:4.3.3
 
 # 安装后的工作目录  
-├ www   					工作目录      
+├ www   					工作目录
+├── test					测试mysql连接 redis连接 phpinfo   
 ├ swoole
 ├── conf                    配置文件目录
 │   ├── conf.d              Nginx用户站点配置目录
@@ -48,9 +49,9 @@ mkdir project
 cd project
 
 ## 获取源代码
-git clone https://github.com/manjingzi/swoole.git
+git clone https://github.com/sushipai/swoole_project.git
 
-cd swoole
+cd swoole_project
 ## 运行镜像环境配置compose以守护进程模式运行加
 docker-compose up -d
 
@@ -60,7 +61,6 @@ cd ../www
 
 ## 获取源代码
 git clone https://github.com/easy-swoole/easyswoole.git
-
 
 ## 配置数据库
 
