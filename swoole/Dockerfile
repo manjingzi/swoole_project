@@ -4,7 +4,7 @@ FROM php:${PHP_VERSION}-fpm
 ARG PHP_REDIS
 ARG PHP_SWOOLE
 ARG REPLACE_SOURCE_LIST
-# ARG EASYSWOOLE_VERSION
+ARG EASYSWOOLE_VERSION
 
 COPY ./sources.list /etc/apt/sources.list.tmp
 RUN if [ "${REPLACE_SOURCE_LIST}" = "true" ]; then \
@@ -46,7 +46,8 @@ RUN mkdir -p /usr/local/share/composer \
 	&& php /tmp/composer-setup.php --no-ansi --install-dir=/usr/local/bin --filename=composer --snapshot \
 	&& rm -f /tmp/composer-setup.* \
     # 配置composer中国全量镜像
-    && composer config -g repo.packagist composer https://packagist.phpcomposer.com
+    # && composer config -g repo.packagist composer https://packagist.phpcomposer.com
+	&& composer config -g repo.packagist composer https://packagist.laravel-china.org
 	
 # PDO extension
 RUN docker-php-ext-install pdo_mysql
@@ -56,10 +57,10 @@ RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install bcmath
 
 # Install easyswoole
-# RUN cd /var/www/html \
-#     && composer require easyswoole/easyswoole=${EASYSWOOLE_VERSION} \
-#     && php vendor/bin/easyswoole install
+RUN cd /var/www/html \
+	&& composer require easyswoole/easyswoole=${EASYSWOOLE_VERSION} \
+    && php vendor/bin/easyswoole install
 
-# EXPOSE 9501
+EXPOSE 9501
 
-# ENTRYPOINT ["php", "/var/www/html/easyswoole", "start"]
+ENTRYPOINT ["php", "/var/www/html/easyswoole", "start"]

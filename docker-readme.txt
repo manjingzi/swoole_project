@@ -70,8 +70,6 @@ composer require easyswoole/easyswoole=3.x-dev
 
 php vendor/bin/easyswoole install
 
-
-
 #######################################################
 ## 本地未安装相关软件可以在服务端 创建新项目例子
 
@@ -79,17 +77,11 @@ php vendor/bin/easyswoole install
 
 docker exec -it swoole_php72_1 /bin/bash
 
-cd /var/www/html
+cd /var/www/html && composer require easyswoole/easyswoole=3.x-dev && php vendor/bin/easyswoole install && php /var/www/html/easyswoole start
 
-git clone https://github.com/easy-swoole/easyswoole.git
+#如果报错执行 php vendor/easyswoole/easyswoole/bin/easyswoole install
 
-cd easyswoole
-
-composer require easyswoole/easyswoole=3.x-dev
-
-php vendor/bin/easyswoole install
-
-php /var/www/html/easyswoole start
+php /var/www/html/easyswoole/easyswoole start
 
 ## 配置数据库
 
