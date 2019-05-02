@@ -34,6 +34,7 @@ services:
         REPLACE_SOURCE_LIST: ${REPLACE_SOURCE_LIST}
     ports:
       - "${PHP_SWOOLE_SOCKET_PORT}:9501"
+      - "${PHP_SWOOLE_WEBSOCKET_PORT}:9500"
     volumes:
       - ${SOURCE_DIR}:/var/www/html/:rw
       - ${PHP_PHP_CONF_FILE}:/usr/local/etc/php/php.ini:ro
