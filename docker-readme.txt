@@ -1,3 +1,8 @@
+windows 配置域名指向
+C:\Windows\System32\drivers\etc\hosts 配置域名指向
+127.0.0.1 swoole.local
+127.0.0.1 jjcms.com #测试https 证书是正规申请的不会阻拦
+
 # 在此之前先要了解 docker 一些基本用法https://juejin.im/post/5cacbfd7e51d456e8833390c
 
 # 首先确保你安装了 docker 和 docker-compose 和 git 和 phpcomposer
