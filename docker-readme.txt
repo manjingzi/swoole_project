@@ -73,15 +73,14 @@ php vendor/bin/easyswoole install
 #######################################################
 ## 本地未安装相关软件可以在服务端 创建新项目例子
 
-## docker exec命令在window cmd 有效 MINGW64 无效 
+## docker exec命令 	#### 在window cmd 有效 MINGW64 无效 
+# 进入swoole_php72_1
+docker exec -it  swoole_php72_1 /bin/bash
+# 进入后安装easyswoole 
+mkdir /var/www/html/easyswoole && cd /var/www/html/easyswoole && composer require easyswoole/easyswoole=3.x-dev && php vendor/bin/easyswoole install 
 
-docker exec -it swoole_php72_1 /bin/bash
-
-cd /var/www/html && composer require easyswoole/easyswoole=3.x-dev && php vendor/bin/easyswoole install && php /var/www/html/easyswoole start
-
-#如果报错执行 php vendor/easyswoole/easyswoole/bin/easyswoole install
-
-php /var/www/html/easyswoole/easyswoole start
+# 客户端执行服务器命令 #### 在window cmd 有效 MINGW64 无效 
+docker exec -d -w /var/www/html/easyswoole swoole_php72_1 php easyswoole start
 
 ## 配置数据库
 

@@ -4,7 +4,7 @@ FROM php:${PHP_VERSION}-fpm
 ARG PHP_REDIS
 ARG PHP_SWOOLE
 ARG REPLACE_SOURCE_LIST
-ARG EASYSWOOLE_VERSION
+# ARG EASYSWOOLE_VERSION
 
 COPY ./sources.list /etc/apt/sources.list.tmp
 RUN if [ "${REPLACE_SOURCE_LIST}" = "true" ]; then \
@@ -57,10 +57,12 @@ RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install bcmath
 
 # Install easyswoole
-RUN cd /var/www/html \
-	&& composer require easyswoole/easyswoole=${EASYSWOOLE_VERSION} \
-    && php vendor/bin/easyswoole install
+# RUN cd /var/www/html \
+# 	&& mkdir easyswoole \
+# 	&& cd easyswoole \
+# 	&& composer require easyswoole/easyswoole=${EASYSWOOLE_VERSION} \
+#     && php vendor/bin/easyswoole install
 
-EXPOSE 9501
+# EXPOSE 9501
 
-ENTRYPOINT ["php", "/var/www/html/easyswoole", "start"]
+# ENTRYPOINT ["php", "/var/www/html/easyswoole/easyswoole", "start"]
